@@ -22,6 +22,11 @@ app.use(express.json())
 app.use(router)
 io.on('connection',(socket)=>{
     console.log('a connection established')
+
+socket.on('create-something',data=>{
+    socket.broadcast.emit('foo',data)
+})
+
    })
 app.use(errorHandler)
 server.listen(PORT,()=>{
